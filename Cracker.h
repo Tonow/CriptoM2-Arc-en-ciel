@@ -1,5 +1,7 @@
 class Cracker {
-  ...
+
+  //TODO
+
   bool cracker( Empreinte y, ArcEnCiel aec, Contexte ctxt,
                 String & clair ) {
     int nb_fausses_alertes = 0;

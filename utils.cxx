@@ -1,6 +1,5 @@
-#include <string>
-#include <iostream>
-#include <sstream>
+#include <stdio.h>
+#include <string.h>
 #include <openssl/md5.h>
 #include <openssl/sha.h>
 
@@ -19,7 +18,7 @@ void HashMD5(unsigned char* pPlain, int nPlainLen, unsigned char* pHash)
 /**
 *Hache un texte en entrer et retourn un chiffre pas la fonction SHA
 */
-void HashSHA1(unsigned char* pPlain, int nPlainLen, unsigned char* pHash)
-{
-  SHA1(pPlain, nPlainLen, pHash);
-}
+// void HashSHA1(unsigned char* pPlain, int nPlainLen, unsigned char* pHash)
+// {
+//   SHA1(pPlain, nPlainLen, pHash);
+// }

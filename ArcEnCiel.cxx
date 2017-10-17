@@ -1,34 +1,41 @@
-#include "ArcEnCiel"
+#include "ArcEnCiel.h"
+#include <cstdint>
+
+typedef unsigned int       uint;
+typedef unsigned long long uint64;
+typedef unsigned char      byte;
+using std::string;
 
 using namespace std;
 
-
-void creer( Contexte ctxt, int num, int M, int T )
+// Creer les M chaînes de taille T, dans le contexte ctxt
+void ArcEnCiel::creer( const Contexte& ctxt, int num, int M, int T )
     {
         //TODO
     }
 
 // Tri _X suivant idxT.
-void trier()
+void ArcEnCiel::trier()
     {
         //TODO
     }
 
 // Sauvegarde la table sur disque.
-void save( String name )
+void ArcEnCiel::save( string name )
     {
         //TODO
     }
 
 // Charge en mémoire la table à partir du disque.
-void load( String name )
+void ArcEnCiel::load( string name )
     {
         //TODO
     }
 
 // Recherche dichotomique dans la table
 // ( p et q sont le premier/dernier trouvé )
-bool recherche( uint64 idx, uint & p, uint & q )
+bool ArcEnCiel::recherche( uint64 idx, uint & p, uint & q )
     {
         //TODO
+        return true;
     }

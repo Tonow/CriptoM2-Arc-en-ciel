@@ -7,7 +7,7 @@ class Cracker {
     int nb_fausses_alertes = 0;
     for ( int t = T - 1; t > 0; --t ) {
        // fabrication du bon indice
-       uint64 idx = ctxt.h2i( t, y );
+       uint64_t idx = ctxt.h2i( t, y );
        for ( int k = t + 1; k <= T - 1; ++k ) {
          idx = ctxt.i2i( k, idx );
        }

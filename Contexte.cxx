@@ -1,40 +1,38 @@
-#include "Contexte"
+#include "Contexte.h"
+#include <cstdint>
 
 using namespace std;
 
-
 // fonction de hachage
-
-
-// In: Clair c ----> Out: Empreinte
-void h( String c, Condense & d )
+// In: Clair c ----> Out: Empreinte (tableau de 16 octets (MD5) ou 20 octets (SHA1)
+void Contexte::h( string c, byte d[] )
     {
         //TODO
     }
 
 // In: position t, empreinte d ---> Retourne index
-uint64 h2i( uint64 t, Condense & d )
+uint64_t Contexte::h2i( uint64_t t, const byte d[] )
     {
         //TODO
     }
 
 // In: index idx ----> Out: Clair c
-void i2c( uint64 idx, String & c )
+string Contexte::i2c( uint64_t idx )
     {
         //TODO
     }
 
 // In: index idx ----> retourne index (la composée des précédentes)
-uint64 i2i( uint64 idx )
+uint64_t Contexte::i2i( uint64_t idx )
     {
         //TODO
     }
 
 // Retourne un indice aléatoire valide.
-uint64 randIndex()
+uint64_t Contexte::randIndex()
     {
         unsigned long n1 = random();
         unsigned long n2 = random();
-        uint64 n = ( (uint64) n2 ) + ( ( (uint64) n1 ) << 32 );
+        uint64_t n = ( (uint64_t) n2 ) + ( ( (uint64_t) n1 ) << 32 );
         return n;
     }

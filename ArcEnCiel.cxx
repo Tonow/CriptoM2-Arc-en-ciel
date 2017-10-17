@@ -18,6 +18,7 @@ void ArcEnCiel::creer( const Contexte& ctxt, int num, int M, int T )
 void ArcEnCiel::trier()
     {
         //TODO
+        cout << "blabal" << endl;
     }
 
 // Sauvegarde la table sur disque.

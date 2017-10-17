@@ -17,7 +17,10 @@ using namespace std;
 int main( int argc, char** argv )
 {
   	cout << "Vide pour l'instant" << endl;
-    ArcEnCiel nom;
-    nom.trier();
+   //  ArcEnCiel nom;
+   //  nom.trier();
+    Contexte c;
+    c.i2c(0);
+
   	return 0;
 }

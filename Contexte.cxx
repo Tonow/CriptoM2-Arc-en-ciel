@@ -1,4 +1,5 @@
 #include "Contexte.h"
+#include <iostream>
 #include <cstdint>
 
 using namespace std;
@@ -11,28 +12,33 @@ void Contexte::h( string c, byte d[] )
     }
 
 // In: position t, empreinte d ---> Retourne index
-uint64_t Contexte::h2i( uint64_t t, const byte d[] )
+uint64 Contexte::h2i( uint64 t, const byte d[] )
     {
         //TODO
+        return 0;
     }
 
 // In: index idx ----> Out: Clair c
-string Contexte::i2c( uint64_t idx )
+string Contexte::i2c( uint64 idx )
     {
-        //TODO
+        char cClair[] = {(char) (idx + 'a')};
+        string sClair(cClair);
+        std::cout << sClair << std::endl;
+        return sClair;
     }
 
 // In: index idx ----> retourne index (la composée des précédentes)
-uint64_t Contexte::i2i( uint64_t idx )
+uint64 Contexte::i2i( uint64 idx )
     {
         //TODO
+        return 0;
     }
 
 // Retourne un indice aléatoire valide.
-uint64_t Contexte::randIndex()
+uint64 Contexte::randIndex()
     {
         unsigned long n1 = random();
         unsigned long n2 = random();
-        uint64_t n = ( (uint64_t) n2 ) + ( ( (uint64_t) n1 ) << 32 );
+        uint64 n = ( (uint64) n2 ) + ( ( (uint64) n1 ) << 32 );
         return n;
     }

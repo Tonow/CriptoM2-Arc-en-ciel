@@ -1,6 +1,7 @@
 #include "Contexte.h"
 #include <iostream>
 #include <cstdint>
+#include <math.h>
 
 using namespace std;
 
@@ -21,8 +22,23 @@ uint64 Contexte::h2i( uint64 t, const byte d[] )
 // In: index idx ----> Out: Clair c
 string Contexte::i2c( uint64 idx )
     {
-        char cClair[] = {(char) (idx + 'a')};
+        char lettre_i;
+        char cClair[_mot_taille_max];
+        for (int i = _mot_taille_max; i > 0 ; i--) {
+            uint64 position_lettre = pow(_nb_lettres,i);
+            if (idx > position_lettre) {
+                uint64 position_alphabet_lettre_i = (idx / _nb_lettres) % _nb_lettres;
+                lettre_i = (char) (position_alphabet_lettre_i + 'a');
+                idx = idx - position_alphabet_lettre_i;
+            }
+            else{
+                lettre_i = (char) ('a');
+            }
+            cClair[i] = lettre_i;
+        }
+
         string sClair(cClair);
+        std::cout << "nb lettre : " << _nb_lettres <<'\n';
         std::cout << sClair << std::endl;
         return sClair;
     }

@@ -22,23 +22,56 @@ uint64 Contexte::h2i( uint64 t, const byte d[] )
 // In: index idx ----> Out: Clair c
 string Contexte::i2c( uint64 idx )
     {
+        cout << "index = " << idx << endl;
         char lettre_i;
-        char cClair[_mot_taille_max];
-        for (int i = _mot_taille_max; i > 0 ; i--) {
+        string sClair;
+        cout << "mot taille max = " << _mot_taille_max << endl;
+        for (int i = _mot_taille_max - 1; i >= 1; i--) {
             uint64 position_lettre = pow(_nb_lettres,i);
-            if (idx > position_lettre) {
-                uint64 position_alphabet_lettre_i = (idx / _nb_lettres) % _nb_lettres;
+
+            //cas Puissance n
+            if ((idx >= position_lettre) && (i > 0)) {
+                cout << "if" << endl;
+                cout << "idx entre : " << idx << endl;
+                uint64 position_alphabet_lettre_i =((uint64) (idx / position_lettre) % _nb_lettres);
                 lettre_i = (char) (position_alphabet_lettre_i + 'a');
-                idx = idx - position_alphabet_lettre_i;
+                idx = idx - (idx - position_lettre);
+                cout << "idx sortie: " << idx << endl;
             }
+
+            //cas Puissance 1
+            else if (i==1) {
+                cout << "if" << endl;
+                cout << "idx entre : " << idx << endl;
+                uint64 position_alphabet_lettre_i =((uint64) (idx / position_lettre) % _nb_lettres);
+                lettre_i = (char) (position_alphabet_lettre_i + 'a');
+                idx = idx - (idx - _nb_lettres);
+                cout << "idx sortie: " << idx << endl;
+            }
+
+            //cas Puissance 0
+            else if (i==0){
+                cout << "else if" << endl;
+                cout << "idx : " << idx << endl;
+                lettre_i = (char) (idx + 'a');
+            }
+
+            //cas indice inferieure Puissance n
             else{
+                cout << "else" << endl;
                 lettre_i = (char) ('a');
             }
-            cClair[i] = lettre_i;
+            sClair += lettre_i;
         }
 
-        string sClair(cClair);
-        std::cout << "nb lettre : " << _nb_lettres <<'\n';
+        //string sClair(cClair);
+
+        int a = 0;
+        for(std::string::iterator it = sClair.begin(); it != sClair.end(); ++it) {
+            cout << "indice de la chaine : " << a << " sClair vaut " << sClair[a] << endl;
+            a++;
+        }
+
         std::cout << sClair << std::endl;
         return sClair;
     }

@@ -21,9 +21,15 @@ int main( int argc, char** argv )
     }
     int indice = atoi(argv[1]);
 
-  	cout << "Vide pour l'instant" << endl;
-   //  ArcEnCiel nom;
-   //  nom.trier();
+    cout << '\n'
+         << "#########################" << '\n'
+         << "### Table arc-en-ciel ###" << '\n'
+         << "#########################" << '\n'<< endl;
+    cout <<  "\n" <<"Fonction ok :" << endl;
+    cout << "   --> i2c" << endl;
+
+    cout << "\n" << endl;
+
     Contexte c;
     c.i2c(indice);
 

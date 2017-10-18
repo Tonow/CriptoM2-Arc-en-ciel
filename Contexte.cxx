@@ -25,46 +25,37 @@ string Contexte::i2c( uint64 idx )
         cout << "index = " << idx << endl;
         char lettre_i;
         string sClair;
-        cout << "mot taille max = " << _mot_taille_max << endl;
-        for (int i = _mot_taille_max - 1; i >= 1; i--) {
+        cout << "mot taille max = " << _mot_taille_max << "\n" << endl;
+        cout << "les lettres sont : " << _lettres << "\n" << endl;
+        for (int i = _mot_taille_max - 1; i >= 0; i--)
+        {
+
             uint64 position_lettre = pow(_nb_lettres,i);
 
             //cas Puissance n
-            if ((idx >= position_lettre) && (i > 0)) {
-                cout << "if" << endl;
-                cout << "idx entre : " << idx << endl;
+            if ((idx >= position_lettre) && (i > 0))
+            {
                 uint64 position_alphabet_lettre_i =((uint64) (idx / position_lettre) % _nb_lettres);
                 lettre_i = (char) (position_alphabet_lettre_i + 'a');
-                idx = idx - (idx - position_lettre);
-                cout << "idx sortie: " << idx << endl;
-            }
-
-            //cas Puissance 1
-            else if (i==1) {
-                cout << "if" << endl;
-                cout << "idx entre : " << idx << endl;
-                uint64 position_alphabet_lettre_i =((uint64) (idx / position_lettre) % _nb_lettres);
-                lettre_i = (char) (position_alphabet_lettre_i + 'a');
-                idx = idx - (idx - _nb_lettres);
-                cout << "idx sortie: " << idx << endl;
+                idx = idx - (position_alphabet_lettre_i * position_lettre) ;
             }
 
             //cas Puissance 0
-            else if (i==0){
-                cout << "else if" << endl;
-                cout << "idx : " << idx << endl;
+            else if (i==0)
+            {
                 lettre_i = (char) (idx + 'a');
             }
 
             //cas indice inferieure Puissance n
-            else{
-                cout << "else" << endl;
+            else
+            {
                 lettre_i = (char) ('a');
             }
             sClair += lettre_i;
         }
 
         //string sClair(cClair);
+        std::cout << "\n" << '\n';
 
         int a = 0;
         for(std::string::iterator it = sClair.begin(); it != sClair.end(); ++it) {
@@ -72,7 +63,7 @@ string Contexte::i2c( uint64 idx )
             a++;
         }
 
-        std::cout << sClair << std::endl;
+        std::cout << '\n' << "  --> le clair est : " <<sClair << "\n" << std::endl;
         return sClair;
     }
 

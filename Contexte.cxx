@@ -1,4 +1,7 @@
 #include "Contexte.h"
+#include "ArcEnCiel.h"
+#include "utils.h"
+
 #include <iostream>
 #include <cstdint>
 #include <math.h>
@@ -9,14 +12,22 @@ using namespace std;
 // In: Clair c ----> Out: Empreinte (tableau de 16 octets (MD5) ou 20 octets (SHA1)
 void Contexte::h( string c, byte d[] )
     {
-        //TODO
+        //TODO verifier
+        unsigned char* pPlain = (unsigned char*) (&c[0]);
+        int nPlainLen = c.length();
+        unsigned char* pHash = d;
+        HashMD5(pPlain, nPlainLen, pHash);
     }
 
 // In: position t, empreinte d ---> Retourne index
 uint64 Contexte::h2i( uint64 t, const byte d[] )
     {
-        //TODO
-        return 0;
+        uint64* ptr = (uint64*) d; // le tableau de caractères est vu comme un tableau de grand nombre.
+        uint64 i = *ptr; // par définition le nombre stocké dans t[0-7].
+
+        uint64 index;
+        index = (i + t) % _N;
+        return index;
     }
 
 // In: index idx ----> Out: Clair c
@@ -68,10 +79,20 @@ string Contexte::i2c( uint64 idx )
     }
 
 // In: index idx ----> retourne index (la composée des précédentes)
-uint64 Contexte::i2i( uint64 idx )
+uint64 Contexte::i2i( uint64 idx ) //TODO verifier
     {
-        //TODO
-        return 0;
+        uint T; //TODO a definir lors de l'appel
+        T = -1;
+        std::cout << '\n' << "ATTENTION T a Definir !!!" << '\n'<<endl;
+
+        for (uint i = 0; i < T; i++)
+        {
+            string clair_i2c =  i2c(idx);
+            h( clair_i2c, empreinte );
+            idx = h2i(i, empreinte);
+        }
+
+        return idx;
     }
 
 // Retourne un indice aléatoire valide.

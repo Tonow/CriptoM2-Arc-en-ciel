@@ -5,6 +5,7 @@
 #include <cstdint>
 #pragma once
 
+
 typedef unsigned int       uint;
 typedef unsigned long long uint64;
 typedef unsigned char      byte;

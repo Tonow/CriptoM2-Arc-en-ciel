@@ -3,7 +3,7 @@ PROGS_SRC=arc-en-ciel.cxx
 
 SRC=utils.cxx ArcEnCiel.cxx Contexte.cxx
 OBJ=${SRC:.cxx=.o}
-HEADERS=utils.h Contexte.h Cracker.h
+HEADERS=utils.h Contexte.h Cracker.h ArcEnCiel.h
 PROGS=${PROGS_SRC:.cxx=}
 CXXFLAGS=-O3 -g -Wall -std=c++11
 #env CFLAGS= /usr/include/openssl

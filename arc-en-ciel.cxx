@@ -25,8 +25,15 @@ int main( int argc, char** argv )
          << "#########################" << '\n'
          << "### Table arc-en-ciel ###" << '\n'
          << "#########################" << '\n'<< endl;
+         
     cout <<  "\n" <<"Fonction ok :" << endl;
     cout << "   --> i2c" << endl;
+
+    cout <<  "\n" <<"Fonction a tester :" << endl;
+    cout << "   --> h" << endl;
+    cout << "   --> h2i" << endl;
+    cout << "   --> i2i" << endl;
+    cout << "   --> randIndex" << endl;
 
     cout << "\n" << endl;
 

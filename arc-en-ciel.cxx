@@ -43,6 +43,7 @@ int main( int argc, char** argv )
     Contexte c;
     c.i2c(indice);
     c.h(chaineTeste, d);
+    c.h2i(0, d);
 
   	return 0;
 }

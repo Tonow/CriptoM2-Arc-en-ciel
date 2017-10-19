@@ -36,6 +36,8 @@ uint64 Contexte::h2i( uint64 t, const byte d[] )
 
         uint64 index;
         index = (i + t) % _N;
+
+        std::cout << " --> h2i " << index << '\n';
         return index;
     }
 

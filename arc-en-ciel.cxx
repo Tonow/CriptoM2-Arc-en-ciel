@@ -21,7 +21,9 @@ int main( int argc, char** argv )
     if ( argc < 2){
          cout << "Entrez un paramètre" << endl;
     }
-    //uint64 indice = atoi(argv[1]);
+    uint64 indice = atoi(argv[1]);
+    uint p;
+    uint q;
     string chaineTeste = argv[2];
     //int t = atoi(argv[3]);
 
@@ -31,18 +33,17 @@ int main( int argc, char** argv )
          << "#########################" << '\n'<< endl;
 
     cout <<  "\n" <<"Fonction ok :" << endl;
-    cout << "   --> i2c" << endl;
-    cout << "   --> h" << endl;
-    cout << "   --> h2i" << endl;
-    cout << "   --> i2i" << endl;
-    cout << "   --> cree" << endl;
-    cout << "   --> trier" << endl;
-    cout << "   --> randIndex" << endl;
-    cout << "   --> load" << endl;
-
+    cout << "   --> Contexte.i2c" << endl;
+    cout << "   --> Contexte.h" << endl;
+    cout << "   --> Contexte.h2i" << endl;
+    cout << "   --> Contexte.i2i" << endl;
+    cout << "   --> Contexte.randIndex" << endl;
+    cout << "   --> ArcEnCiel.cree" << endl;
+    cout << "   --> ArcEnCiel.trier" << endl;
+    cout << "   --> ArcEnCiel.load" << endl;
+    cout << "   --> ArcEnCiel.recherche" << endl;
 
     cout <<  "\n" <<"Fonction a tester :" << endl;
-    cout << "   --> ArcEnCiel.recherche" << endl;
 
     cout << "\n" << endl;
 
@@ -60,13 +61,14 @@ int main( int argc, char** argv )
    ArcEnCiel arc;
    std::cout << "arc._numero : " << arc._numero << endl;
    std::cout << "arc._M : " << arc._M << endl;
-   std::cout << "arc._T : " << arc._T << endl;
+   std::cout << "arc._T : " << arc._T << "\n" << endl;
    arc.creer(c , arc._numero , arc._M, arc._T);
     std::cout << "#########################" << '\n'
               << "#########################" << '\n' <<endl;
    arc.trier();
    //arc.save("test.txt");
-   arc.load("test.txt");
+   //arc.load("test.txt");
+   arc.recherche(indice, p , q);
 
   	return 0;
 }

@@ -27,10 +27,14 @@ void ArcEnCiel::creer(Contexte& ctxt, int num, int M, int T )
         _X.resize(M);
         float rate = (float)(100.0/M);
         int rateAffiche;
+        int oldRate = 0;
         for (int i = 0; i < M; i++) // on vas ecrire M fois dans notre table
         {
             rateAffiche = (int) floor(i*rate);
-            cout << "Pourcentage de la creation de la table : " << rateAffiche << "%" << '\n';
+            if (oldRate != rateAffiche) {
+                cout << "Pourcentage de la creation de la table : " << rateAffiche << "%" << '\n';
+            }
+            oldRate = rateAffiche;
             indiceEntre = ctxt.randIndex();
             _X[i].idx1 = indiceEntre;
             for (int t = 0; t < T; t++) // on tourne T fois avec i2i
@@ -39,7 +43,8 @@ void ArcEnCiel::creer(Contexte& ctxt, int num, int M, int T )
                 indiceEntre = indiceSortie;
             }
             _X[i].idxT = indiceSortie;
-            std::cout << _X[i].idx1 << "-i2i(0) --> ... -i2c(" << T << ") -> " << _X[i].idxT << endl;
+            //affichage
+            //std::cout << _X[i].idx1 << "-i2i(0) --> ... -i2c(" << T << ") -> " << _X[i].idxT << endl;
         }
     }
 
@@ -51,10 +56,11 @@ void ArcEnCiel::trier()
                            {return _X.idxT < _X2.idxT;}
             );
 
-        for (uint i = 0; i < _X.size(); i++)
-        {
-            cout << _X[i].idx1 << "-i2i(0) --> ... -i2c(final) -> " << _X[i].idxT << endl;
-        }
+        ////affichage
+        // for (uint i = 0; i < _X.size(); i++)
+        // {
+        //     cout << _X[i].idx1 << "-i2i(0) --> ... -i2c(final) -> " << _X[i].idxT << endl;
+        // }
 
     }
 
@@ -122,8 +128,14 @@ bool ArcEnCiel::recherche( uint64 idx, uint & p, uint & q )
             {
                  q = milieu;
             }
-            else p = im;
+            else p = milieu;
         }
 
+        if (trouve) {
+            cout << "\n"<< "trouver " << _X[milieu].idxT << endl;
+        }
+        else {
+            cout << "\n" << "non trouver" << endl;
+        }
         return trouve;
     }

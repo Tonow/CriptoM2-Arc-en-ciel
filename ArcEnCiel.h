@@ -5,6 +5,7 @@
 #include <iostream>
 #pragma once
 #include <cstdint>
+#include <vector>
 
 #include "Contexte.h"
 
@@ -21,16 +22,17 @@ struct Chaine {
 class ArcEnCiel {
 public:
 
-  uint    _numero;   // numero de la table (ici 0, mais voir "Moult tables")
-  uint    _M;        // nombre de chaines dans la table
+  uint    _numero = 0;   // numero de la table (ici 0, mais voir "Moult tables")
+  uint    _M = 20;        // nombre de chaines dans la table
   uint    _T = 5000; // taille de chaque chaine
-  Chaine* _X;        // la table elle-meme
+  vector<Chaine> _X;        // la table elle-meme
+  vector<Chaine> _X2;        // la table elle-meme
 
 
 
 
   // Creer les M chaînes de taille T, dans le contexte ctxt
-  void creer( const Contexte& ctxt, int num, int M, int T );
+  void creer( Contexte& ctxt, int num, int M, int T );
   // Tri _X suivant idxT.
   void trier();
   // Sauvegarde la table sur disque.

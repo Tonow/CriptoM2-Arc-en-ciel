@@ -18,14 +18,14 @@ void Contexte::h( string c, byte d[] )
         unsigned char* pHash = d;
         HashMD5(pPlain, nPlainLen, pHash);
 
-        // pour l'affichage
-        char mdString[33];
-        for (int i = 0; i < 16; i++)
-        {
-            sprintf(&mdString[i*2], "%02x", (unsigned int)pHash[i]);
-        }
-
-        printf("md5 digest: %s\n", mdString);
+        // // pour l'affichage
+        // char mdString[33];
+        // for (int i = 0; i < 16; i++)
+        // {
+        //     sprintf(&mdString[i*2], "%02x", (unsigned int)pHash[i]);
+        // }
+        //
+        // printf("md5 digest: %s\n", mdString);
     }
 
 // In: position t, empreinte d ---> Retourne index
@@ -37,18 +37,18 @@ uint64 Contexte::h2i( uint64 t, const byte d[] )
         uint64 index;
         index = (i + t) % _N;
 
-        std::cout << " --> h2i " << index << '\n';
+        //std::cout << " --> h2i " << index << '\n';
         return index;
     }
 
 // In: index idx ----> Out: Clair c
 string Contexte::i2c( uint64 idx )
     {
-        cout << "index = " << idx << endl;
+        //cout << "index = " << idx << endl;
         char lettre_i;
         string sClair;
-        cout << "mot taille max = " << _mot_taille_max << "\n" << endl;
-        cout << "les lettres sont : " << _lettres << "\n" << endl;
+        //cout << "mot taille max = " << _mot_taille_max << "\n" << endl;
+        //cout << "les lettres sont : " << _lettres << "\n" << endl;
         for (int i = _mot_taille_max - 1; i >= 0; i--)
         {
 
@@ -77,15 +77,15 @@ string Contexte::i2c( uint64 idx )
         }
 
         //string sClair(cClair);
-        std::cout << "\n" << '\n';
+        //std::cout << "\n" << '\n';
 
         int a = 0;
         for(std::string::iterator it = sClair.begin(); it != sClair.end(); ++it) {
-            cout << "indice de la chaine : " << a << " sClair vaut " << sClair[a] << endl;
+            //cout << "indice de la chaine : " << a << " sClair vaut " << sClair[a] << endl;
             a++;
         }
 
-        std::cout << '\n' << "  --> le clair est : " <<sClair << "\n" << std::endl;
+        //std::cout << '\n' << "  --> le clair est : " <<sClair << "\n" << std::endl;
         return sClair;
     }
 
@@ -96,7 +96,7 @@ uint64 Contexte::i2i( uint64 idx , uint64 t) //TODO verifier
         h( clair_i2c, empreinte );
         idx = h2i(t, empreinte);
 
-        std::cout << "i2i --> " << idx << '\n';
+        //std::cout << " clair_i2c --> "<< clair_i2c << "   ...       i2i --> " << idx << '\n';
         return idx;
     }
 

@@ -41,7 +41,7 @@ class Contexte {
   string i2c( uint64 idx );
 
   // In: index idx ----> retourne index (la composée des précédentes)
-  uint64 i2i( uint64 idx );
+  uint64 i2i( uint64 idx , uint64 t);
 
   // Retourne un indice aléatoire valide.
   uint64 randIndex();

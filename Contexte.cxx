@@ -90,19 +90,13 @@ string Contexte::i2c( uint64 idx )
     }
 
 // In: index idx ----> retourne index (la composée des précédentes)
-uint64 Contexte::i2i( uint64 idx ) //TODO verifier
+uint64 Contexte::i2i( uint64 idx , uint64 t) //TODO verifier
     {
-        uint T; //TODO a definir lors de l'appel
-        T = -1;
-        std::cout << '\n' << "ATTENTION T a Definir !!!" << '\n'<<endl;
+        string clair_i2c =  i2c(idx);
+        h( clair_i2c, empreinte );
+        idx = h2i(t, empreinte);
 
-        for (uint i = 0; i < T; i++)
-        {
-            string clair_i2c =  i2c(idx);
-            h( clair_i2c, empreinte );
-            idx = h2i(i, empreinte);
-        }
-
+        std::cout << "i2i --> " << idx << '\n';
         return idx;
     }
 

@@ -23,10 +23,10 @@ class Contexte {
 
 
   // Valeur test pour Mdp de 4 lettres et uniquement alphabetique minucule
-  uint64 _N           = 456976; // 26^4
-  int _mot_taille_min = 4;     // 4 lettres min
-  int _mot_taille_max = 4;     // 4 lettres max
-  uint64 _N_taille[1] = {456976};// il n'y a que les mots de 4 lettres
+  uint64 _N           = 11881376; // 26^4
+  int _mot_taille_min = 5;     // 4 lettres min
+  int _mot_taille_max = 5;     // 4 lettres max
+  uint64 _N_taille[1] = {11881376};// il n'y a que les mots de 4 lettres
   int _nb_lettres     = 26;    // 26 lettres de l'alphabet
   string _lettres     = "abcdefghijklmnopqrstuvwxyz"; // l'alphabet
 

@@ -21,6 +21,7 @@ int main( int argc, char** argv )
     }
     int indice = atoi(argv[1]);
     string chaineTeste = argv[2];
+    int t = atoi(argv[3]);
 
     cout << '\n'
          << "#########################" << '\n'
@@ -30,9 +31,9 @@ int main( int argc, char** argv )
     cout <<  "\n" <<"Fonction ok :" << endl;
     cout << "   --> i2c" << endl;
     cout << "   --> h" << endl;
+    cout << "   --> h2i" << endl;
 
     cout <<  "\n" <<"Fonction a tester :" << endl;
-    cout << "   --> h2i" << endl;
     cout << "   --> i2i" << endl;
     cout << "   --> randIndex" << endl;
 
@@ -42,8 +43,9 @@ int main( int argc, char** argv )
 
     Contexte c;
     c.i2c(indice);
+    std::cout << "texte origin :" << chaineTeste << '\n';
     c.h(chaineTeste, d);
-    c.h2i(0, d);
+    c.h2i(t, d);
 
   	return 0;
 }

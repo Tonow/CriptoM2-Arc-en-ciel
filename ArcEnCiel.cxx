@@ -105,6 +105,25 @@ void ArcEnCiel::load( string name )
 // ( p et q sont le premier/dernier trouvé )
 bool ArcEnCiel::recherche( uint64 idx, uint & p, uint & q )
     {
-        //TODO
-        return true;
+        //TODO a verifier
+        bool trouve = false;  //faux tant que "idx" n'aura pas été trouvée
+        uint milieu;  //indice de "milieu"
+        p = 0;
+        q = _X.size();
+
+        /* boucle de recherche */
+        while(!trouve && ((q - p) > 1))
+        {
+            milieu = (p + q)/2;  //on détermine l'indice de milieu
+
+            trouve = (_X[milieu].idxT == idx);  //on regarde si la valeur recherchée est à cet indice
+
+            if(_X[milieu].idxT > idx)
+            {
+                 q = milieu;
+            }
+            else p = im;
+        }
+
+        return trouve;
     }

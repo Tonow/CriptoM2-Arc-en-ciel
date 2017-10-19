@@ -42,6 +42,7 @@ int main( int argc, char** argv )
 
 
     cout <<  "\n" <<"Fonction a tester :" << endl;
+    cout << "   --> ArcEnCiel.recherche" << endl;
 
     cout << "\n" << endl;
 

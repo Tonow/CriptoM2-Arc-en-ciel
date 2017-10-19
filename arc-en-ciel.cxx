@@ -20,25 +20,29 @@ int main( int argc, char** argv )
          cout << "Entrez un paramètre" << endl;
     }
     int indice = atoi(argv[1]);
+    string chaineTeste = argv[2];
 
     cout << '\n'
          << "#########################" << '\n'
          << "### Table arc-en-ciel ###" << '\n'
          << "#########################" << '\n'<< endl;
-         
+
     cout <<  "\n" <<"Fonction ok :" << endl;
     cout << "   --> i2c" << endl;
+    cout << "   --> h" << endl;
 
     cout <<  "\n" <<"Fonction a tester :" << endl;
-    cout << "   --> h" << endl;
     cout << "   --> h2i" << endl;
     cout << "   --> i2i" << endl;
     cout << "   --> randIndex" << endl;
 
     cout << "\n" << endl;
 
+    byte d[16];
+
     Contexte c;
     c.i2c(indice);
+    c.h(chaineTeste, d);
 
   	return 0;
 }

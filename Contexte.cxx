@@ -13,10 +13,19 @@ using namespace std;
 void Contexte::h( string c, byte d[] )
     {
         //TODO verifier
-        unsigned char* pPlain = (unsigned char*) (&c[0]);
+        unsigned char* pPlain = (unsigned char*) c.c_str();
         int nPlainLen = c.length();
         unsigned char* pHash = d;
         HashMD5(pPlain, nPlainLen, pHash);
+
+        // pour l'affichage
+        char mdString[33];
+        for (int i = 0; i < 16; i++)
+        {
+            sprintf(&mdString[i*2], "%02x", (unsigned int)pHash[i]);
+        }
+
+        printf("md5 digest: %s\n", mdString);
     }
 
 // In: position t, empreinte d ---> Retourne index

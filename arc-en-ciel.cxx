@@ -38,6 +38,7 @@ int main( int argc, char** argv )
     cout << "   --> cree" << endl;
     cout << "   --> trier" << endl;
     cout << "   --> randIndex" << endl;
+    cout << "   --> load" << endl;
 
 
     cout <<  "\n" <<"Fonction a tester :" << endl;
@@ -63,6 +64,8 @@ int main( int argc, char** argv )
     std::cout << "#########################" << '\n'
               << "#########################" << '\n' <<endl;
    arc.trier();
+   //arc.save("test.txt");
+   arc.load("test.txt");
 
   	return 0;
 }

@@ -1,6 +1,9 @@
 
 #include <cstdint>
 #include <algorithm>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 #include "ArcEnCiel.h"
 
@@ -22,8 +25,12 @@ void ArcEnCiel::creer(Contexte& ctxt, int num, int M, int T )
         uint64 indiceEntre = 0;
         uint64 indiceSortie = 0;
         _X.resize(M);
+        float rate = (float)(100.0/M);
+        int rateAffiche;
         for (int i = 0; i < M; i++) // on vas ecrire M fois dans notre table
         {
+            rateAffiche = (int) floor(i*rate);
+            cout << "Pourcentage de la creation de la table : " << rateAffiche << "%" << '\n';
             indiceEntre = ctxt.randIndex();
             _X[i].idx1 = indiceEntre;
             for (int t = 0; t < T; t++) // on tourne T fois avec i2i
@@ -54,13 +61,44 @@ void ArcEnCiel::trier()
 // Sauvegarde la table sur disque.
 void ArcEnCiel::save( string name )
     {
-        //TODO
+        ofstream fichier;
+        fichier.open(name);
+        fichier << _X.size() << endl;
+        for (uint i=0; i<_X.size(); i++){
+            fichier <<  _X[i].idx1 << " " << _X[i].idxT << endl;
+        }
+        fichier.close();
     }
 
 // Charge en mémoire la table à partir du disque.
 void ArcEnCiel::load( string name )
     {
-        //TODO
+        uint64 nbInFile;
+        uint nbLigne;
+        string ligne;
+        ifstream fichier (name);
+
+        getline(fichier, ligne);
+        nbLigne = stoul(ligne.c_str());
+        std::cout << '\n'  << "Load file : " << name << "\n"
+        <<"Nombre de ligne dans le fichier : " << ligne << endl;
+
+        for (uint i=1; i < (nbLigne +1); i++){ //(nbInFile - 11)
+            getline(fichier, ligne , ' ');// premier chiffre de la ligne
+            nbInFile = stoull(ligne.c_str());
+            _X[i-1].idx1 = nbInFile; // indice initial
+
+            //std::cout << "idx1 : " << nbInFile << " i : " << i << endl;
+
+            getline(fichier, ligne);// deuxieme chiffre de la ligne
+            nbInFile = stoull(ligne.c_str());
+            _X[i-1].idxT = nbInFile; // indice finale
+
+            //cout << "idxT : " << nbInFile << " i : " << i << endl;
+
+            cout << "   Indice initial --> " << _X[i-1].idx1 << "  ...  Finale --> " << _X[i-1].idxT << endl;
+        }
+        fichier.close();
     }
 
 // Recherche dichotomique dans la table

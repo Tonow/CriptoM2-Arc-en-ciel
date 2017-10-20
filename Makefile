@@ -1,5 +1,5 @@
 # ajoutez vos programmes ci-dessous
-PROGS_SRC=arc-en-ciel.cxx
+PROGS_SRC=arc-en-ciel.cxx craquer.cxx
 
 SRC=utils.cxx ArcEnCiel.cxx Contexte.cxx
 OBJ=${SRC:.cxx=.o}
@@ -11,6 +11,9 @@ CXXFLAGS=-O3 -g -Wall -std=c++11
 all: ${PROGS}
 
 arc-en-ciel: arc-en-ciel.cxx ${OBJ} ${HEADERS}
+	g++ ${CXXFLAGS} $< ${OBJ} -lssl -lcrypto -o $@
+
+craquer: craquer.cxx ${OBJ} ${HEADERS}
 	g++ ${CXXFLAGS} $< ${OBJ} -lssl -lcrypto -o $@
 
 

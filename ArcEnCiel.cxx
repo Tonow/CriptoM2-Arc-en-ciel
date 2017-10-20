@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <unistd.h>
 
 #include "ArcEnCiel.h"
 
@@ -28,11 +29,17 @@ void ArcEnCiel::creer(Contexte& ctxt, int num, int M, int T )
         float rate = (float)(100.0/M);
         int rateAffiche;
         int oldRate = 0;
+        printf("Pourcentage de la creation de la table : 0 %%");
+        fflush(stdout);
         for (int i = 0; i < M; i++) // on vas ecrire M fois dans notre table
         {
             rateAffiche = (int) floor(i*rate);
             if (oldRate != rateAffiche) {
-                cout << "Pourcentage de la creation de la table : " << rateAffiche << "%" << '\n';
+                //cout << "Pourcentage de la creation de la table : " << rateAffiche << "%" << '\r';
+                printf("\rPourcentage de la creation de la table : %d%%", rateAffiche);
+
+                fflush(stdout);
+                usleep(1);
             }
             oldRate = rateAffiche;
             indiceEntre = ctxt.randIndex();
@@ -46,6 +53,15 @@ void ArcEnCiel::creer(Contexte& ctxt, int num, int M, int T )
             //affichage
             //std::cout << _X[i].idx1 << "-i2i(0) --> ... -i2c(" << T << ") -> " << _X[i].idxT << endl;
         }
+        fflush(stdout);
+        printf("\rPourcentage de la creation de la table : 100%%");
+
+
+        cout << "\n Creation de la table : \n"
+        <<"   --> numero :"<< num << "\n"
+        <<"   --> nb ligne :"<< M << "\n"
+        <<"   --> nb colonne (virtuel) :"<< T << "\n"
+        << " ok\n" << endl;
     }
 
 // Tri _X suivant idxT.
@@ -61,6 +77,7 @@ void ArcEnCiel::trier()
         // {
         //     cout << _X[i].idx1 << "-i2i(0) --> ... -i2c(final) -> " << _X[i].idxT << endl;
         // }
+        cout << "\n Tri de la table ok\n"  << endl;
 
     }
 
@@ -74,6 +91,7 @@ void ArcEnCiel::save( string name )
             fichier <<  _X[i].idx1 << " " << _X[i].idxT << endl;
         }
         fichier.close();
+        cout << "\n Sauvegarde sur fichier : " << name << " ok\n" << endl;
     }
 
 // Charge en mémoire la table à partir du disque.

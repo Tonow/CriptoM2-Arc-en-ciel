@@ -1,5 +1,5 @@
 /**
-*Décrypte un mot de passe MD5 ou SHA
+*Crée une table arc-en-ciel
 */
 
 #include <string>
@@ -19,12 +19,14 @@ using namespace std;
 int main( int argc, char** argv )
 {
     if ( argc < 2){
-         cout << "Entrez un paramètre" << endl;
+         cout << "Entrez un parametre \n --> 1) le nom fichier dans le quel vous vouler sauver votre table"
+         << endl;
     }
-    uint64 indice = atoi(argv[1]);
-    uint p;
-    uint q;
-    string chaineTeste = argv[2];
+    string nomFichierTable = argv[1];
+    //uint64 indice = atoi(argv[1]);
+   //  uint p;
+   //  uint q;
+    //string chaineTeste = argv[2];
     //int t = atoi(argv[3]);
 
     cout << '\n'
@@ -66,9 +68,9 @@ int main( int argc, char** argv )
     std::cout << "#########################" << '\n'
               << "#########################" << '\n' <<endl;
    arc.trier();
-   //arc.save("test.txt");
+   arc.save(nomFichierTable);
    //arc.load("test.txt");
-   arc.recherche(indice, p , q);
+   //arc.recherche(indice, p , q);
 
   	return 0;
 }

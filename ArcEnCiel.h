@@ -23,7 +23,7 @@ class ArcEnCiel {
 public:
 
   uint    _numero = 0;   // numero de la table (ici 0, mais voir "Moult tables")
-  uint    _M = 20;        // nombre de chaines dans la table
+  uint    _M = 5000;        // nombre de chaines dans la table
   uint    _T = 5000; // taille de chaque chaine
   vector<Chaine> _X;        // la table elle-meme
   vector<Chaine> _X2;        // la table temporaire de tri

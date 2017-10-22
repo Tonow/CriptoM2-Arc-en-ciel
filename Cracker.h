@@ -20,5 +20,5 @@ public:
 private:
  // on peut mettre l'empreinte dans cette donnée membre
  // (évite de crééer un tableau à chaque fois)
- byte empreinte0[ 16 ];
+ //byte empreinte0[ 16 ];
 };

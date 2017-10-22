@@ -17,6 +17,8 @@ void Contexte::h( string c, byte d[] )
         unsigned char* pHash = d;
         HashMD5(pPlain, nPlainLen, pHash);
 
+        //std::cout << "claire avant h: " << c << '\n';
+
         // // pour l'affichage
         // char mdString[33];
         // for (int i = 0; i < 16; i++)
@@ -24,6 +26,7 @@ void Contexte::h( string c, byte d[] )
         //     sprintf(&mdString[i*2], "%02x", (unsigned int)pHash[i]);
         // }
         //
+        // printf("md5 init: %s\n", pHash);
         // printf("md5 digest: %s\n", mdString);
     }
 

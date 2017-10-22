@@ -30,6 +30,7 @@ bool Cracker::VerifieAlerte( byte Empreinte[], vector<Chaine> _X, uint t, uint m
     //unsigned char* empreinte0;
     // X[ m ] est le couple ( i_m1, i_mT )
     // clair : texte clair si trouvé
+    byte empreinte0[ 16 ];
     bool trouver;
 
     // On parcourt à partir du début de la chaîne
@@ -42,7 +43,7 @@ bool Cracker::VerifieAlerte( byte Empreinte[], vector<Chaine> _X, uint t, uint m
     clair = ctxt.i2c(idx);
     ctxt.h(clair , empreinte0); // crée l'empreinte du clair a tester
 
-    std::cout << "Alerte pour clair :" << clair << "  -- Empreinte : "<< empreinte0 << '\n';
+     std::cout << "Alerte pour Claire : " << clair << " ; qui a l empreinte -->  "<< empreinte0 << endl;
 
     trouver = (Empreinte == empreinte0);
 
@@ -74,8 +75,8 @@ bool Cracker::cracker( byte Empreinte[], ArcEnCiel& aec, Contexte& ctxt, string 
     // affichage progrestion
     rateAffiche = (int) floor( 100 - t*rate);
           if (oldRate != rateAffiche) {
-              //cout << "Pourcentage de la creation de la table : " << rateAffiche << "%" << '\r';
-              //printf(COLOR_MAGENTA "\rPourcentage de Test du mdp : %d %%", rateAffiche);
+              // cout << "Pourcentage de la creation de la table : " << rateAffiche << "%" << '\r';
+              printf(COLOR_MAGENTA "\rPourcentage de Test du mdp : %d %%", rateAffiche);
 
               fflush(stdout);
               usleep(1);
@@ -93,7 +94,7 @@ bool Cracker::cracker( byte Empreinte[], ArcEnCiel& aec, Contexte& ctxt, string 
        // On vérifie chacune des alertes
        for ( uint m = p; m <= q; ++m ) {
          //std::cout << "p = "<<p << " q = " << q << '\n';
-         std::cout << "Empreinte : " << Empreinte << "  -- indice : "<<  idx << "  t : " << t  <<'\n';
+         //std::cout << "Empreinte : " << Empreinte << "  -- indice : "<<  idx << "  t : " << t  <<'\n';
          if ( VerifieAlerte( Empreinte, aec._X, t, m, clair, ctxt) )
            return true;
          nb_fausses_alertes++;
@@ -101,7 +102,7 @@ bool Cracker::cracker( byte Empreinte[], ArcEnCiel& aec, Contexte& ctxt, string 
      }
   }
   fflush(stdout);
-  //printf("\rPourcentage de Test du mdp : 100%%" COLOR_RESET);
+  printf("\rPourcentage de Test du mdp : 100%%" COLOR_RESET);
 
   cout << "\n" << "Non trouve, fausses alertes = " << nb_fausses_alertes << endl;
   return false;

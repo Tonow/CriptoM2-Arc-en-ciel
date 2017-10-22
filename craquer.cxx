@@ -100,6 +100,7 @@ int main( int argc, char** argv )
     Cracker crac;
 
     byte empreinte1 [16];
+    byte empreinteCrack [16];
 
     ctxt.h(claire , empreinte1);
 
@@ -110,12 +111,19 @@ int main( int argc, char** argv )
     //byte empreinteCrack[ 16 ];
     unsigned char* empreinteCrackTempo = (unsigned char*) hash.c_str();
 
-    std::cout << "empreinteCrackTempo avant " << empreinteCrackTempo << '\n';
+    std::cout << "empreinteCrackTempo avant " << empreinteCrack << '\n';
 
    //  unsigned char* empreinteCrackByte [1];
-     hex2bin(empreinteCrackTempo, empreinteCrackTempo);
+     hex2bin(empreinteCrackTempo, empreinteCrack);
 
-     std::cout << "empreinteCrackTempo apres " << empreinteCrackTempo << '\n';
+      std::cout << "empreinteCrackTempo apres " << empreinteCrack << '\n';
+   //   char mdString[33];
+   //    for (int i = 0; i < 16; i++)
+   //    {
+   //         sprintf(&mdString[i*2], "%02x", (unsigned int)empreinteCrack[i]);
+   //    }
+     //
+   //    printf("empreinteCrackTempo apres hexa: %s\n", mdString);
 
 
     uint nbL = arc.loadNbLigne(fichierArcEnCiel);
@@ -123,7 +131,7 @@ int main( int argc, char** argv )
     arc._X.resize(nbL);
 
     arc.load(fichierArcEnCiel);
-    //crac.cracker( emprtest, arc, ctxt, clair , nbC);
+    crac.cracker( empreinteCrack, arc, ctxt, clair , nbC);
 
 
    std::cout << "chaine deja Hasher : " << hash << endl;

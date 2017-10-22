@@ -36,9 +36,12 @@ int char2int(unsigned char input)
 
 void hex2bin(unsigned char* src,unsigned char* target)
 {
+    //int i = 1;
   while(*src && src[1])
   {
     *(target++) = char2int(*src)*16 + char2int(src[1]);
     src += 2;
+    //std::cout << "i de hex2bin : " << i << endl;
+    //i = i + 1;
   }
 }

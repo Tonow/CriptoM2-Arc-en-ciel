@@ -12,7 +12,6 @@ using namespace std;
 // In: Clair c ----> Out: Empreinte (tableau de 16 octets (MD5) ou 20 octets (SHA1)
 void Contexte::h( string c, byte d[] )
     {
-        //TODO verifier
         unsigned char* pPlain = (unsigned char*) c.c_str();
         int nPlainLen = c.length();
         unsigned char* pHash = d;

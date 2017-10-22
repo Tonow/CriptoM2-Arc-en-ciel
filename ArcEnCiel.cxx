@@ -84,9 +84,11 @@ void ArcEnCiel::trier()
 // Sauvegarde la table sur disque.
 void ArcEnCiel::save( string name )
     {
+        name = name + ".txt";
         ofstream fichier;
         fichier.open(name);
         fichier << _X.size() << endl;
+        fichier << _T << endl;
         for (uint i=0; i<_X.size(); i++){
             fichier <<  _X[i].idx1 << " " << _X[i].idxT << endl;
         }
@@ -94,10 +96,9 @@ void ArcEnCiel::save( string name )
         cout << "\n Sauvegarde sur fichier : " << name << " ok\n" << endl;
     }
 
-// Charge en mémoire la table à partir du disque.
-void ArcEnCiel::load( string name )
+// Nombre de ligne du fichier a traiter en memoir
+uint ArcEnCiel::loadNbLigne( string name )
     {
-        uint64 nbInFile;
         uint nbLigne;
         string ligne;
         ifstream fichier (name);
@@ -105,22 +106,61 @@ void ArcEnCiel::load( string name )
         getline(fichier, ligne);
         nbLigne = stoul(ligne.c_str());
         std::cout << '\n'  << "Load file : " << name << "\n"
-        <<"Nombre de ligne dans le fichier : " << ligne << endl;
+        <<"Nombre de ligne dans le fichier : " << nbLigne << endl;
+        fichier.close();
 
-        for (uint i=1; i < (nbLigne +1); i++){ //(nbInFile - 11)
+        return nbLigne;
+    }
+
+// Nombre de colonne de la table arc-en-ciel
+uint ArcEnCiel::loadNbColonne( string name )
+    {
+        uint nbColonne;
+        string ligne;
+        ifstream fichier (name);
+
+        getline(fichier, ligne);
+        getline(fichier, ligne);
+        nbColonne = stoul(ligne.c_str());
+        std::cout << '\n'  << "Nombre de colonnes dans le fichier : " << nbColonne << endl;
+
+        fichier.close();
+        return nbColonne;
+    }
+
+// Charge en mémoire la table à partir du disque.
+void ArcEnCiel::load( string name )
+    {
+        uint64 nbInFile;
+        uint nbLigne;
+        uint nbColonne;
+        string ligne;
+        ifstream fichier (name);
+
+        getline(fichier, ligne);
+        nbLigne = stoul(ligne.c_str());
+        std::cout << '\n'  << "Load file : " << name << "\n"
+        <<"Nombre de ligne dans le fichier : " << nbLigne << endl;
+
+        getline(fichier, ligne);
+        nbColonne = stoul(ligne.c_str());
+        std::cout << '\n'  << "Nombre de colonnes dans le fichier : " << nbColonne << endl;
+
+        for (uint i=0; i < nbLigne; i++){ //(nbInFile - 11)
+            //printf("\rLecture de la ligne %d",i);
             getline(fichier, ligne , ' ');// premier chiffre de la ligne
             nbInFile = stoull(ligne.c_str());
-            _X[i-1].idx1 = nbInFile; // indice initial
+            _X[i].idx1 = nbInFile; // indice initial
 
             //std::cout << "idx1 : " << nbInFile << " i : " << i << endl;
 
             getline(fichier, ligne);// deuxieme chiffre de la ligne
             nbInFile = stoull(ligne.c_str());
-            _X[i-1].idxT = nbInFile; // indice finale
+            _X[i].idxT = nbInFile; // indice finale
 
             //cout << "idxT : " << nbInFile << " i : " << i << endl;
 
-            cout << "   Indice initial --> " << _X[i-1].idx1 << "  ...  Finale --> " << _X[i-1].idxT << endl;
+            //cout << "   Indice initial --> " << _X[i].idx1 << "  ...  Finale --> " << _X[i].idxT << endl;
         }
         fichier.close();
     }
@@ -149,11 +189,12 @@ bool ArcEnCiel::recherche( uint64 idx, uint & p, uint & q )
             else p = milieu;
         }
 
-        if (trouve) {
-            cout << "\n"<< "trouver " << _X[milieu].idxT << endl;
-        }
-        else {
-            cout << "\n" << "non trouver" << endl;
-        }
+        // if (trouve) {
+        //     cout << "\n"<< "Recherch ok pour : " << _X[milieu].idxT << endl;
+        // }
+        // else {
+        //     ////visuel
+        //     //cout << "\n" << "non trouver" << endl;
+        // }
         return trouve;
     }

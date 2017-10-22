@@ -5,6 +5,16 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <stdio.h>
+
+#define COLOR_RED     "\x1b[31m"
+#define COLOR_GREEN   "\x1b[32m"
+#define COLOR_YELLOW  "\x1b[33m"
+#define COLOR_BLUE    "\x1b[34m"
+#define COLOR_MAGENTA "\x1b[35m"
+#define COLOR_CYAN    "\x1b[36m"
+#define COLOR_RESET   "\x1b[0m"
+
 #include "utils.h"
 #include "ArcEnCiel.h"
 
@@ -18,21 +28,54 @@ using namespace std;
 
 int main( int argc, char** argv )
 {
-    if ( argc < 2){
-         cout << "Entrez un parametre \n --> 1) le nom fichier dans le quel vous vouler sauver votre table"
-         << endl;
-    }
-    string nomFichierTable = argv[1];
+   string nomFichierTable;
+   string Mstr;
+   int M;
+   string reponse = " ";
+   bool parametreEntrerOk = false;
+
+   cout << '\n'
+           << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n'      << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' <<endl;
+   cout << "Bonjour," << endl;
+   cout << '\n'
+           << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n'      << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' <<endl;
+
+
+   if ( argc < 3){
+     while (parametreEntrerOk == false) {
+
+        cout << "Il faut entrer des parametres Voulez vous continuer? Oui/Non"<< endl;
+        cin >> reponse;
+
+        if (reponse == "NON" || reponse ==  "non" ||reponse ==  "N" ||reponse ==  "n" ||
+            reponse == "q" || reponse ==  "Q" || reponse ==  "no" || reponse ==  "No" ||
+            reponse ==  "NO") {
+           std::cout << "Au revoir" << '\n';
+           exit(-1);
+        }
+
+        printf("\n1: Nom du fichier de la table :    ");
+        cin >> nomFichierTable;
+
+        printf("\n1: Nombre de ligne de la table :    ");
+        cin >> Mstr;
+        M = atoi(Mstr.c_str());
+        parametreEntrerOk = true; // pour plus tard valider les reponses
+     }
+   }
+   else
+   {
+     nomFichierTable = argv[1];
+     Mstr = argv[2];
+     M = atoi(Mstr.c_str());
+   }
     //uint64 indice = atoi(argv[1]);
    //  uint p;
    //  uint q;
     //string chaineTeste = argv[2];
     //int t = atoi(argv[3]);
 
-    cout << '\n'
-         << "#########################" << '\n'
-         << "### Table arc-en-ciel ###" << '\n'
-         << "#########################" << '\n'<< endl;
+    cout << '\n'  << COLOR_RED << "####"<< COLOR_GREEN <<"####"<< COLOR_YELLOW <<"####"<< COLOR_BLUE <<"####"<< COLOR_MAGENTA <<"####"<< COLOR_CYAN <<"####"<< COLOR_RESET << '\n' << "###Table arc-en-ciel###" << '\n'    << COLOR_RED << "####"<< COLOR_GREEN <<"####"<< COLOR_YELLOW <<"####"<< COLOR_BLUE <<"####"<< COLOR_MAGENTA <<"####"<< COLOR_CYAN <<"####"<< COLOR_RESET << '\n'<< endl;
 
     cout <<  "\n" <<"Fonction ok :" << endl;
     cout << "   --> Contexte.i2c" << endl;
@@ -45,7 +88,11 @@ int main( int argc, char** argv )
     cout << "   --> ArcEnCiel.load" << endl;
     cout << "   --> ArcEnCiel.recherche" << endl;
 
+    cout << '\n' << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n'  << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' <<endl;
+
     cout <<  "\n" <<"Fonction a tester :" << endl;
+
+    cout << '\n' << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' <<endl;
 
     cout << "\n" << endl;
 
@@ -64,13 +111,25 @@ int main( int argc, char** argv )
    std::cout << "arc._numero : " << arc._numero << endl;
    std::cout << "arc._M : " << arc._M << endl;
    std::cout << "arc._T : " << arc._T << "\n" << endl;
-   arc.creer(c , arc._numero , arc._M, arc._T);
-    std::cout << "#########################" << '\n'
-              << "#########################" << '\n' <<endl;
+
+   cout << '\n' << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######" << COLOR_RESET <<'\n' <<endl;
+
+   arc.creer(c , arc._numero , M, arc._T);
+
+   cout << '\n' << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' <<endl;
    arc.trier();
+   cout << '\n' << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< '\n' <<endl;
    arc.save(nomFichierTable);
-   //arc.load("test.txt");
+
+
+   //arc.load(nomFichierTable);
+   //std::cout << "Load ok" << '\n';
    //arc.recherche(indice, p , q);
+
+   cout << '\n'
+   << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< COLOR_RESET << '\n'
+   << "###  La table a bien ete creee   ###" << '\n'
+   << COLOR_RED << "######"<< COLOR_GREEN <<"######"<< COLOR_YELLOW <<"######"<< COLOR_BLUE <<"######"<< COLOR_MAGENTA <<"######"<< COLOR_CYAN <<"######"<< COLOR_RESET << '\n'<< endl;
 
   	return 0;
 }

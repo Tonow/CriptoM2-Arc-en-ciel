@@ -26,8 +26,8 @@ void Contexte::h( string c, byte d[] )
         //     sprintf(&mdString[i*2], "%02x", (unsigned int)pHash[i]);
         // }
         //
-        // printf("md5 init: %s\n", pHash);
         // printf("md5 digest: %s\n", mdString);
+        // printf("md5 init: %s\n", pHash);
     }
 
 // In: position t, empreinte d ---> Retourne index

@@ -21,7 +21,7 @@ Deux programme
 
 2) - craquer
     craque un hash type md5 (pour SHA1 il faut changer des paramétres notamment la fonction h et donc re-génere une table)
-        @argument hash - le hash a craquer
+        @argument hash - le hash a craquer ex: $ echo -n 'azert' | md5sum
         @argument fichierArcEnCiel - la table dans le quelle on cherche
         @argument (de test) claire - car il y a un probleme de correspondance en le tableau de byte du claire hasher et celui du hash qui est construit (notamment le dernier octet)
 
@@ -36,4 +36,4 @@ Deux programme
 
 Etat actuel:
     -création table arc-en-ciel ok (aphabet de 26 lettres minuscules et taille mot fixe)
-    -craque presque ok (on pense) juste pb de comparaison entre transformation en hexadecimal en byte de soit le hash de test soit l'original 
+    -craque presque ok (on pense) juste pb de comparaison entre transformation en hexadecimal en byte de soit le hash de test soit l'original

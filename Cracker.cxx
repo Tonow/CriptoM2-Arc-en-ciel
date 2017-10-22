@@ -30,7 +30,6 @@ bool Cracker::VerifieAlerte( byte Empreinte[], vector<Chaine> _X, uint t, uint m
     //unsigned char* empreinte0;
     // X[ m ] est le couple ( i_m1, i_mT )
     // clair : texte clair si trouvé
-    byte empreinte0[ 16 ];
     bool trouver;
 
     // On parcourt à partir du début de la chaîne
@@ -41,9 +40,25 @@ bool Cracker::VerifieAlerte( byte Empreinte[], vector<Chaine> _X, uint t, uint m
       idx = ctxt.i2i(idx, k);
     }
     clair = ctxt.i2c(idx);
+
+    byte empreinte0 [16];
+    //byte *empreinte0 = Empreinte; // trouver toujours vrais
+    //std::cout << "Empreinte 0 avant h : |" << empreinte0  << "|"<< endl;
     ctxt.h(clair , empreinte0); // crée l'empreinte du clair a tester
 
-     std::cout << "Alerte pour Claire : " << clair << " ; qui a l empreinte -->  "<< empreinte0 << endl;
+    // // pour l'affichage
+        // char mdString[33];
+        // char mdStringh[33];
+        // for (int i = 0; i < 16; i++)
+        // {
+        //     sprintf(&mdString[i*2], "%02x", (unsigned int)empreinte0[i]);
+        //     sprintf(&mdStringh[i*2], "%02x", (unsigned int)Empreinte[i]);
+        // }
+
+        //printf("md5 digest: %s\n", mdString);
+     //std::cout << "Alerte pour Claire : " << clair << " ; qui a l empreinte -->  |"<< empreinte0 << "|" << " hexa : |" << mdString << "|" << "  Empreinte hash : |" << Empreinte << "|" << " hexa : |"<< mdStringh <<"|"<< endl;
+
+     std::cout << "Alerte pour Claire : " << clair << " ; qui a l empreinte -->  |"<< empreinte0 << "|" << "  Empreinte hash : |" << Empreinte << "|" << endl;
 
     trouver = (Empreinte == empreinte0);
 
@@ -96,8 +111,14 @@ bool Cracker::cracker( byte Empreinte[], ArcEnCiel& aec, Contexte& ctxt, string 
          //std::cout << "p = "<<p << " q = " << q << '\n';
          //std::cout << "Empreinte : " << Empreinte << "  -- indice : "<<  idx << "  t : " << t  <<'\n';
          if ( VerifieAlerte( Empreinte, aec._X, t, m, clair, ctxt) )
+         {
            return true;
-         nb_fausses_alertes++;
+           break;
+         }
+         else
+         {
+           nb_fausses_alertes++;
+         }
        }
      }
   }
